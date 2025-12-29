@@ -1,0 +1,7 @@
+{
+  "name": "BelanjaPintar",
+  "description": "Aplikasi daftar belanja cerdas dengan integrasi AI untuk scan struk atau catatan tangan.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>BelanjaPintar</title>
+    
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#6366f1" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BelanjaPintar">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3737/3737151.png">
+
+    <style>
+      /* 1. Base / Light Mode Variables */
+      :root {
+        --color-primary: 99 102 241;
+        --color-secondary: 129 140 248;
+        --color-dark: 49 46 129;
+
+        --bg-app: #f8fafc;
+        --bg-surface: #ffffff;
+        --bg-surface-alt: #f1f5f9;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --border-subtle: #f1f5f9;
+        --border-strong: #e2e8f0;
+      }
+
+      /* 2. Automatic Dark Mode (System Preference) */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-app: #0f172a;
+          --bg-surface: #1e293b;
+          --bg-surface-alt: #334155;
+          --text-main: #f8fafc;
+          --text-muted: #94a3b8;
+          --border-subtle: #1e293b;
+          --border-strong: #334155;
+        }
+      }
+
+      /* 3. Manual Override: Forcing Light Mode */
+      :root.light {
+        --bg-app: #f8fafc;
+        --bg-surface: #ffffff;
+        --bg-surface-alt: #f1f5f9;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --border-subtle: #f1f5f9;
+        --border-strong: #e2e8f0;
+      }
+
+      /* 4. Manual Override: Forcing Dark Mode */
+      :root.dark {
+        --bg-app: #0f172a;
+        --bg-surface: #1e293b;
+        --bg-surface-alt: #334155;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --border-subtle: #1e293b;
+        --border-strong: #334155;
+      }
+
+      body {
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .modern-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .modern-scrollbar::-webkit-scrollbar-thumb {
+        background-color: var(--text-muted);
+        border-radius: 10px;
+        opacity: 0.3;
+      }
+    </style>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: 'rgb(var(--color-primary) / <alpha-value>)', 
+              secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+              dark: 'rgb(var(--color-dark) / <alpha-value>)',
+              app: 'var(--bg-app)',
+              surface: 'var(--bg-surface)',
+              'surface-alt': 'var(--bg-surface-alt)',
+              main: 'var(--text-main)',
+              muted: 'var(--text-muted)',
+              'border-subtle': 'var(--border-subtle)',
+              'border-strong': 'var(--border-strong)',
+            },
+            animation: {
+              'fade-in-down': 'fadeInDown 0.3s ease-out',
+              'fade-in-up': 'fadeInUp 0.3s ease-out',
+              'fade-in': 'fadeIn 0.2s ease-out',
+            },
+            keyframes: {
+              fadeInDown: {
+                '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+            }
+          }
+        }
+      }
+    </script>
+    <script type="importmap">
+    {
+      "imports": {
+        "react/": "https://aistudiocdn.com/react@^19.2.1/",
+        "react": "https://aistudiocdn.com/react@^19.2.1",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.32.0",
+        "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/"
+      }
+    }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-app text-main antialiased overscroll-none">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
